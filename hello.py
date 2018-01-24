@@ -1,9 +1,9 @@
-from flask import Flask, render_template #追加
+from flask import Flask, render_template, request #追加
 import MySQLdb #追加
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def hello():
 
     #db setting
@@ -23,8 +23,17 @@ def hello():
     curs.close()
     conn.close()
 
+    try:
+        value_search = request.form['search']
+    except:
+        value_search = None
+
+
     #return name
-    return render_template('hello.html', title='flask test', members=members) #変更
+    return render_template('hello.html',
+                            title='flask test',
+                            members=members,
+                            value_search=value_search) #変更
 
 ## おまじない
 if __name__ == "__main__":

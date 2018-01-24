@@ -7,6 +7,10 @@
   </head>
   <body>
     <h1>meibo Prototype</h1>
+    <form action="/" method="post">
+      ユーザID<input type="text" name="search" placeholder="検索するキーワードを入力してください">
+      <input type="submit" value="検索">
+    </form>
     <h2>社員一覧</h2>
     <table>
       <tr>
@@ -32,6 +36,9 @@
       </tr>
       {% endfor %}
     </table>
+    {% if value_search %}
+    <h2>{{ value_search }}</h2>
+    {% endif %}
     <h1>!!試験運用中!!</h1>
     <img src="{{url_for('static', filename='snake.png')}}" alt="snake">
   </body>
